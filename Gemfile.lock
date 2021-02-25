@@ -2,12 +2,43 @@ PATH
   remote: .
   specs:
     spoor_client (0.1.0)
+      maxmind-geoip2 (~> 0.5.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
+    connection_pool (2.2.3)
+    crack (0.4.5)
+      rexml
     diff-lcs (1.4.4)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.7.6)
+    ffi (1.14.2)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
+    hashdiff (1.0.1)
+    http (4.4.1)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      http-parser (~> 1.2.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
+    http-parser (1.2.3)
+      ffi-compiler (>= 1.0, < 2.0)
+    maxmind-db (1.1.1)
+    maxmind-geoip2 (0.5.0)
+      connection_pool (~> 2.2)
+      http (~> 4.3)
+      maxmind-db (~> 1.1)
+    public_suffix (4.0.6)
     rake (13.0.3)
+    rexml (3.2.4)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -21,14 +52,25 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.2)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.7)
+    vcr (6.0.0)
+    webmock (3.11.2)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  dotenv (~> 2.7.6)
   rake (~> 13.0)
   rspec (~> 3.10.0)
   spoor_client!
+  vcr (~> 6.0.0)
+  webmock (~> 3.11.2)
 
 BUNDLED WITH
    2.2.3

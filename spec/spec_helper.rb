@@ -13,6 +13,20 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'dotenv'
+Dotenv.load('.env.test')
+
+require 'vcr'
+require_relative File.join(File.dirname(__FILE__), '..', 'lib', 'spoor_client')
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/cassettes'
+  c.hook_into :webmock
+  c.filter_sensitive_data('<ENCODED AUTH HEADER>') do
+    Base64.strict_encode64("#{ENV.fetch('MAXMIND_USER_ID')}:#{ENV.fetch('MAXMIND_LICENCE_KEY')}")
+  end
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
