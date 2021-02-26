@@ -43,6 +43,10 @@ RSpec.describe SpoorClient::MetadataBuilder do
     it 'provides metadata related to the IP address' do
       expect(subject.metadata_for(record)).to eql({
         ip_address: {
+          address_properties: {
+            public: true,
+            ipv4: true
+          },
           country: {
             iso_code: 'US',
           },
@@ -77,8 +81,15 @@ RSpec.describe SpoorClient::MetadataBuilder do
       subject.metadata_for(record)
     end
 
-    it 'returns no metadata' do
-      expect(subject.metadata_for(record)).to eql({})
+    it 'returns limited metadata' do
+      expect(subject.metadata_for(record)).to eql({
+        ip_address: {
+          address_properties: {
+            public: false,
+            ipv4: true
+          },
+        }
+      })
     end
   end
 
@@ -92,7 +103,14 @@ RSpec.describe SpoorClient::MetadataBuilder do
     end
 
     it 'returns no metadata' do
-      expect(subject.metadata_for(record)).to eql({})
+      expect(subject.metadata_for(record)).to eql({
+        ip_address: {
+          address_properties: {
+            public: true,
+            ipv4: false
+          },
+        }
+      })
     end
   end
 end
